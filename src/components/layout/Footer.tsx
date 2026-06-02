@@ -11,7 +11,7 @@ export default function Footer() {
               <span className="text-2xl font-display text-gold-500">Shop</span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Nền tảng mua sắm trực tuyến hàng đầu Việt Nam. Cam kết sản phẩm chính hãng, giá tốt nhất và giao hàng toàn quốc.
+              Cửa hàng K beauty tuyển chọn các sản phẩm nổi bật từ Olive Young Global: chống nắng, dưỡng da, trang điểm và chăm sóc tóc.
             </p>
             <div className="flex gap-4 mt-6">
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary-500 transition-colors">
@@ -29,11 +29,11 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Danh Mục</h3>
             <ul className="space-y-3 text-sm">
-              <li><Link to="/products?category=thoi-trang" className="hover:text-primary-500 transition-colors">Thời Trang</Link></li>
-              <li><Link to="/products?category=dien-tu" className="hover:text-primary-500 transition-colors">Điện Tử</Link></li>
-              <li><Link to="/products?category=gia-dung" className="hover:text-primary-500 transition-colors">Gia Dụng</Link></li>
-              <li><Link to="/products?category=sac-dep" className="hover:text-primary-500 transition-colors">Sắc Đẹp</Link></li>
-              <li><Link to="/products?category=the-thao" className="hover:text-primary-500 transition-colors">Thể Thao</Link></li>
+              <li><Link to="/products?category=duong-da" className="hover:text-primary-500 transition-colors">Dưỡng Da</Link></li>
+              <li><Link to="/products?category=chong-nang" className="hover:text-primary-500 transition-colors">Chống Nắng</Link></li>
+              <li><Link to="/products?category=trang-diem" className="hover:text-primary-500 transition-colors">Trang Điểm</Link></li>
+              <li><Link to="/products?category=lam-sach" className="hover:text-primary-500 transition-colors">Làm Sạch</Link></li>
+              <li><Link to="/products?category=toc-co-the" className="hover:text-primary-500 transition-colors">Tóc & Cơ Thể</Link></li>
             </ul>
           </div>
 

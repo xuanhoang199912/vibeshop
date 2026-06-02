@@ -8,12 +8,12 @@ interface Props {
 }
 
 const categoryLabels: Record<string, string> = {
-  "thoi-trang": "Thời Trang",
-  "dien-tu": "Điện Tử",
-  "gia-dung": "Gia Dụng",
-  "sac-dep": "Sắc Đẹp",
-  "the-thao": "Thể Thao",
-  "sach-vpp": "Sách & VPP",
+  "duong-da": "Dưỡng Da",
+  "chong-nang": "Chống Nắng",
+  "trang-diem": "Trang Điểm",
+  "lam-sach": "Làm Sạch",
+  "toc-co-the": "Tóc & Cơ Thể",
+  "mat-na-tools": "Mặt Nạ & Tools",
 };
 
 export default function ProductCard({ product }: Props) {

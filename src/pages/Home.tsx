@@ -9,7 +9,7 @@ const discountOf = (price: number, originalPrice: number) =>
 
 export default function Home() {
   const availableProducts = products.filter((product) => product.inStock);
-  const heroProduct = products.find((product) => product.id === "p13") || availableProducts[0];
+  const heroProduct = products.find((product) => product.id === "p1") || availableProducts[0];
   const miniDeals = availableProducts.filter((product) => product.id === "p4" || product.id === "p8");
   const bestDeals = [...availableProducts]
     .sort((a, b) => discountOf(b.price, b.originalPrice) - discountOf(a.price, a.originalPrice))
@@ -32,30 +32,30 @@ export default function Home() {
                 Sale chọn lọc trong ngày
               </span>
               <h1 className="mt-5 max-w-[22rem] sm:max-w-3xl text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-950">
-                <span className="block lg:inline">VibeShop - chọn nhanh</span>
-                <span className="block lg:inline"> món đáng mua hôm nay</span>
+                <span className="block lg:inline">Olive Young picks</span>
+                <span className="block lg:inline"> cho routine K beauty</span>
               </h1>
               <p className="mt-5 text-lg text-gray-600 leading-relaxed max-w-[22rem] sm:max-w-2xl">
-                Cửa hàng trực tuyến cho thời trang, điện tử, gia dụng và làm đẹp với giá rõ ràng, ưu đãi dễ hiểu và giao hàng toàn quốc.
+                Tuyển chọn các sản phẩm đang nổi bật trên Olive Young Global: kem chống nắng, serum, mặt nạ, trang điểm và chăm sóc tóc.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 mt-8 w-full max-w-[22rem] sm:max-w-full">
                 <Link to="/products" className="btn-primary text-center w-full sm:w-auto">
                   Mua sắm ngay
                 </Link>
-                <Link to="/products?category=dien-tu" className="btn-outline text-center w-full sm:w-auto">
-                  Xem deal điện tử
+                <Link to="/products?category=chong-nang" className="btn-outline text-center w-full sm:w-auto">
+                  Xem chống nắng
                 </Link>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8 w-full max-w-[22rem] sm:max-w-xl">
                 <div className="border border-gray-100 rounded-lg p-4 bg-gray-50">
                   <span className="block text-2xl font-bold text-gray-950">15</span>
-                  <span className="text-sm text-gray-500">Sản phẩm chọn lọc</span>
+                  <span className="text-sm text-gray-500">Olive picks</span>
                 </div>
                 <div className="border border-gray-100 rounded-lg p-4 bg-gray-50">
                   <span className="block text-2xl font-bold text-gray-950">6</span>
-                  <span className="text-sm text-gray-500">Danh mục chính</span>
+                  <span className="text-sm text-gray-500">Nhóm K beauty</span>
                 </div>
                 <div className="border border-gray-100 rounded-lg p-4 bg-gray-50">
                   <span className="block text-2xl font-bold text-gray-950">4.7/5</span>
@@ -124,7 +124,7 @@ export default function Home() {
               ["Freeship từ 500.000₫", "Áp dụng toàn quốc"],
               ["Đổi trả 7 ngày", "Kiểm tra hàng khi nhận"],
               ["Thanh toán linh hoạt", "COD, ngân hàng, MoMo"],
-              ["Hỗ trợ nhanh", "Tư vấn trước khi mua"],
+              ["Tư vấn routine", "Chọn sản phẩm theo nhu cầu da"],
             ].map(([title, description]) => (
               <div key={title} className="flex items-center gap-3">
                 <span className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-gold-300">
@@ -184,7 +184,7 @@ export default function Home() {
             <div>
               <span className="text-primary-500 font-semibold text-sm tracking-widest uppercase">Giá tốt</span>
               <h2 className="section-title mt-2">Ưu đãi đáng mua hôm nay</h2>
-              <p className="text-gray-500 mt-2">Sản phẩm còn hàng, giảm rõ ràng, dễ chốt đơn.</p>
+              <p className="text-gray-500 mt-2">Sản phẩm Olive Young-style còn hàng, giảm rõ ràng, dễ chốt đơn.</p>
             </div>
             <Link to="/products" className="btn-primary w-fit">
               Vào cửa hàng
@@ -206,7 +206,7 @@ export default function Home() {
               <span className="text-gold-300 font-semibold text-sm tracking-widest uppercase">Bán chạy</span>
               <h2 className="text-2xl md:text-3xl font-bold mt-3">Khách đang đánh giá cao</h2>
               <p className="text-white/70 mt-3">
-                Những món có điểm sao nổi bật và nhiều lượt đánh giá trong catalog hiện tại.
+                Những món K beauty có điểm sao nổi bật và nhiều lượt đánh giá trong catalog hiện tại.
               </p>
               <Link to="/products" className="inline-flex items-center gap-2 mt-6 bg-white text-gray-950 rounded-lg px-5 py-3 font-semibold hover:bg-gold-100 transition-colors">
                 Khám phá thêm

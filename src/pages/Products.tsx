@@ -59,7 +59,7 @@ export default function Products() {
     ? "Các sản phẩm phù hợp với từ khóa bạn đang tìm."
     : currentCategory
     ? `Bộ sưu tập ${currentCategory.name.toLowerCase()} đang có ưu đãi và còn hàng.`
-    : "Khám phá toàn bộ catalog VibeShop với nhiều mức giá và danh mục.";
+    : "Khám phá catalog K beauty lấy cảm hứng từ Olive Young Global với nhiều mức giá và nhóm sản phẩm.";
   const heroImage = currentCategory?.image || categories[1].image;
 
   return (

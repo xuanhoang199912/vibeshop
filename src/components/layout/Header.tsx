@@ -61,11 +61,11 @@ export default function Header() {
             <Link to="/products" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
               Ưu Đãi
             </Link>
-            <Link to="/products?category=thoi-trang" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
-              Thời Trang
+            <Link to="/products?category=duong-da" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+              Dưỡng Da
             </Link>
-            <Link to="/products?category=dien-tu" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
-              Điện Tử
+            <Link to="/products?category=chong-nang" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+              Chống Nắng
             </Link>
           </nav>
 
@@ -179,9 +179,9 @@ export default function Header() {
           <div className="px-4 py-4 space-y-3">
             <Link to="/" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Trang Chủ</Link>
             <Link to="/products" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Sản Phẩm</Link>
-            <Link to="/products?category=thoi-trang" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Thời Trang</Link>
-            <Link to="/products?category=dien-tu" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Điện Tử</Link>
-            <Link to="/products?category=gia-dung" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Gia Dụng</Link>
+            <Link to="/products?category=duong-da" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Dưỡng Da</Link>
+            <Link to="/products?category=chong-nang" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Chống Nắng</Link>
+            <Link to="/products?category=trang-diem" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Trang Điểm</Link>
             {user ? (
               <Link to="/profile" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Tài Khoản</Link>
             ) : (
