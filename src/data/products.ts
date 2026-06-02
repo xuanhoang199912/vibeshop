@@ -10,7 +10,7 @@ export const products: Product[] = [
     originalPrice: 650000,
     images: [
       "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600",
-      "https://images.unsplash.com/photo-1598033129183-c4f50c736e10?w=600",
+      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600",
     ],
     category: "thoi-trang",
     rating: 4.5,
@@ -153,8 +153,8 @@ export const products: Product[] = [
     price: 1590000,
     originalPrice: 2190000,
     images: [
-      "https://images.unsplash.com/photo-1584990347449-a6f0e3e25c70?w=600",
-      "https://images.unsplash.com/photo-1585506942812-e72b29d1005b?w=600",
+      "https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600",
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600",
     ],
     category: "gia-dung",
     rating: 4.4,
@@ -172,7 +172,7 @@ export const products: Product[] = [
     originalPrice: 890000,
     images: [
       "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600",
-      "https://images.unsplash.com/photo-1570194065650-d99fb4ee8e39?w=600",
+      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600",
     ],
     category: "sac-dep",
     rating: 4.6,
@@ -225,8 +225,8 @@ export const products: Product[] = [
     price: 8990000,
     originalPrice: 11990000,
     images: [
-      "https://images.unsplash.com/photo-1546868871-af0de0ae72a6?w=600",
-      "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=600",
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600",
+      "https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600",
     ],
     category: "dien-tu",
     rating: 4.6,
@@ -262,7 +262,7 @@ export const products: Product[] = [
     originalPrice: 38990000,
     images: [
       "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600",
-      "https://images.unsplash.com/photo-1591311633300-1e5d73b102aa?w=600",
+      "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600",
     ],
     category: "dien-tu",
     rating: 4.9,

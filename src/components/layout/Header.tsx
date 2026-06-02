@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { searchProducts } from "../../data/products";
+import { formatPrice } from "../../utils/format";
 
 export default function Header() {
   const { user, logout } = useAuth();
@@ -26,15 +27,27 @@ export default function Header() {
     : [];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl md:text-3xl font-display text-primary-500">
-              Vibe
-            </span>
-            <span className="text-2xl md:text-3xl font-display text-gold-500">
-              Shop
+    <header className="fixed top-0 left-0 right-0 z-50">
+      <div className="hidden sm:block bg-gray-950 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-8 flex items-center justify-between text-xs">
+          <span>Freeship từ 500.000₫ · Đổi trả trong 7 ngày</span>
+          <div className="flex items-center gap-4 text-gray-300">
+            <span>Hotline 1900 1234 56</span>
+            <Link to="/products" className="text-gold-300 hover:text-white transition-colors">
+              Ưu đãi hôm nay
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      <div className="glass border-b border-gray-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-start sm:justify-between h-16 md:h-20 gap-3">
+          <Link to="/" className="flex shrink-0 items-center gap-1.5 sm:gap-2" aria-label="VibeShop trang chủ">
+            <span className="text-xl sm:text-2xl md:text-3xl font-display text-primary-500">Vibe</span>
+            <span className="text-xl sm:text-2xl md:text-3xl font-display text-gold-500">Shop</span>
+            <span className="hidden lg:inline-flex text-[10px] font-bold uppercase tracking-widest text-gray-500 border border-gray-200 rounded px-2 py-1">
+              VN
             </span>
           </Link>
 
@@ -45,6 +58,9 @@ export default function Header() {
             <Link to="/products" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
               Sản Phẩm
             </Link>
+            <Link to="/products" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
+              Ưu Đãi
+            </Link>
             <Link to="/products?category=thoi-trang" className="text-gray-600 hover:text-primary-500 font-medium transition-colors">
               Thời Trang
             </Link>
@@ -53,17 +69,18 @@ export default function Header() {
             </Link>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-3 ml-2 sm:ml-0">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="p-2 text-gray-600 hover:text-primary-500 transition-colors"
+              className="hidden sm:block p-2 text-gray-600 hover:text-primary-500 hover:bg-gray-100 rounded-lg transition-colors"
+              aria-label="Mở tìm kiếm"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
 
-            <Link to="/cart" className="relative p-2 text-gray-600 hover:text-primary-500 transition-colors">
+            <Link to="/cart" className="hidden sm:block relative p-2 text-gray-600 hover:text-primary-500 hover:bg-gray-100 rounded-lg transition-colors" aria-label="Giỏ hàng">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
               </svg>
@@ -76,7 +93,7 @@ export default function Header() {
 
             {user ? (
               <div className="relative group">
-                <button className="flex items-center gap-2 p-2 text-gray-600 hover:text-primary-500 transition-colors">
+                <button className="flex items-center gap-2 p-2 text-gray-600 hover:text-primary-500 hover:bg-gray-100 rounded-lg transition-colors">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
@@ -92,14 +109,15 @@ export default function Header() {
                 </div>
               </div>
             ) : (
-              <Link to="/login" className="btn-primary text-sm py-2 px-4">
+              <Link to="/login" className="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
                 Đăng Nhập
               </Link>
             )}
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden p-2 text-gray-600"
+              className="md:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+              aria-label="Mở menu"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {menuOpen ? (
@@ -111,6 +129,7 @@ export default function Header() {
             </button>
           </div>
         </div>
+      </div>
       </div>
 
       {searchOpen && (
@@ -144,7 +163,7 @@ export default function Header() {
                       <img src={p.images[0]} alt={p.name} className="w-10 h-10 object-cover rounded" />
                       <div>
                         <p className="text-sm font-medium">{p.name}</p>
-                        <p className="text-xs text-primary-500 font-semibold">{p.price.toLocaleString()}₫</p>
+                        <p className="text-xs text-primary-500 font-semibold">{formatPrice(p.price)}</p>
                       </div>
                     </button>
                   ))}
@@ -163,7 +182,11 @@ export default function Header() {
             <Link to="/products?category=thoi-trang" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Thời Trang</Link>
             <Link to="/products?category=dien-tu" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Điện Tử</Link>
             <Link to="/products?category=gia-dung" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Gia Dụng</Link>
-            <Link to="/profile" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Tài Khoản</Link>
+            {user ? (
+              <Link to="/profile" onClick={() => setMenuOpen(false)} className="block text-gray-600 hover:text-primary-500 font-medium">Tài Khoản</Link>
+            ) : (
+              <Link to="/login" onClick={() => setMenuOpen(false)} className="block text-primary-500 font-semibold">Đăng Nhập</Link>
+            )}
           </div>
         </div>
       )}

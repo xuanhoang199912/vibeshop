@@ -7,7 +7,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-white text-gray-900;
+    @apply bg-gray-50 text-gray-900 overflow-x-hidden;
   }
 }
 
@@ -28,7 +28,7 @@
            active:scale-95;
   }
   .card {
-    @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300;
+    @apply bg-white rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300;
   }
   .input-field {
     @apply w-full px-4 py-3 border border-gray-200 rounded-lg 
@@ -36,7 +36,7 @@
            outline-none transition-all duration-200;
   }
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-gray-900;
+    @apply text-2xl md:text-3xl font-bold text-gray-900;
   }
   .glass {
     @apply bg-white/80 backdrop-blur-lg;

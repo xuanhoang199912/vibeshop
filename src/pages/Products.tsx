@@ -50,13 +50,57 @@ export default function Products() {
   }, [categoryFilter, searchQuery, sortBy, priceRange]);
 
   const currentCategory = categories.find((c) => c.slug === categoryFilter);
+  const pageTitle = searchQuery
+    ? `Kết quả tìm kiếm: "${searchQuery}"`
+    : currentCategory
+    ? currentCategory.name
+    : "Tất Cả Sản Phẩm";
+  const pageDescription = searchQuery
+    ? "Các sản phẩm phù hợp với từ khóa bạn đang tìm."
+    : currentCategory
+    ? `Bộ sưu tập ${currentCategory.name.toLowerCase()} đang có ưu đãi và còn hàng.`
+    : "Khám phá toàn bộ catalog VibeShop với nhiều mức giá và danh mục.";
+  const heroImage = currentCategory?.image || categories[1].image;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <div className="bg-gray-50">
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+          <div className="grid md:grid-cols-[1.25fr_0.75fr] gap-6 items-center">
+            <div>
+              {currentCategory && (
+                <div className="flex items-center gap-3 mb-2">
+                  <Link to="/products" className="text-sm text-gray-400 hover:text-primary-500">Sản Phẩm</Link>
+                  <span className="text-gray-300">/</span>
+                  <span className="text-sm font-medium text-primary-500">{currentCategory.name}</span>
+                </div>
+              )}
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-950">{pageTitle}</h1>
+              <p className="text-gray-600 mt-3 max-w-2xl">{pageDescription}</p>
+              <div className="flex flex-wrap gap-2 mt-5">
+                <span className="bg-primary-50 text-primary-600 rounded px-3 py-1.5 text-sm font-semibold">
+                  {filtered.length} sản phẩm
+                </span>
+                <span className="bg-gray-100 text-gray-700 rounded px-3 py-1.5 text-sm font-semibold">
+                  Freeship từ 500.000₫
+                </span>
+                <span className="bg-emerald-50 text-emerald-700 rounded px-3 py-1.5 text-sm font-semibold">
+                  Đổi trả 7 ngày
+                </span>
+              </div>
+            </div>
+            <div className="hidden md:block rounded-lg overflow-hidden aspect-[16/9] bg-gray-100">
+              <img src={heroImage} alt={pageTitle} className="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <div className="flex flex-col md:flex-row gap-8">
         <aside className="md:w-64 shrink-0">
-          <div className="sticky top-24 space-y-6">
-            <div>
+          <div className="sticky top-32 space-y-4">
+            <div className="bg-white border border-gray-100 rounded-lg p-4">
               <h3 className="font-semibold text-gray-900 mb-3">Danh Mục</h3>
               <div className="space-y-2">
                 <Link
@@ -82,7 +126,7 @@ export default function Products() {
               </div>
             </div>
 
-            <div>
+            <div className="bg-white border border-gray-100 rounded-lg p-4">
               <h3 className="font-semibold text-gray-900 mb-3">Khoảng Giá</h3>
               <div className="space-y-2">
                 {[
@@ -113,21 +157,8 @@ export default function Products() {
         <div className="flex-1">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <div>
-              {currentCategory && (
-                <div className="flex items-center gap-3 mb-1">
-                  <Link to="/products" className="text-sm text-gray-400 hover:text-primary-500">Sản Phẩm</Link>
-                  <span className="text-gray-300">/</span>
-                  <span className="text-sm font-medium text-primary-500">{currentCategory.name}</span>
-                </div>
-              )}
-              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
-                {searchQuery
-                  ? `Kết quả tìm kiếm: "${searchQuery}"`
-                  : currentCategory
-                  ? currentCategory.name
-                  : "Tất Cả Sản Phẩm"}
-              </h1>
-              <p className="text-sm text-gray-500 mt-1">{filtered.length} sản phẩm</p>
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900">Sản phẩm phù hợp</h2>
+              <p className="text-sm text-gray-500 mt-1">Sắp xếp theo giá, đánh giá hoặc hàng mới.</p>
             </div>
             <select
               value={sortBy}
@@ -158,6 +189,7 @@ export default function Products() {
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

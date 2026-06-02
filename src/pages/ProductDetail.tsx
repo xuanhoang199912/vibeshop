@@ -1,14 +1,24 @@
 import { useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { getProductBySlug, getRelatedProducts } from "../data/products";
 import { useCart } from "../context/CartContext";
 import { formatPrice } from "../utils/format";
 import ProductCard from "../components/ui/ProductCard";
 
+const categoryLabels: Record<string, string> = {
+  "thoi-trang": "Thời Trang",
+  "dien-tu": "Điện Tử",
+  "gia-dung": "Gia Dụng",
+  "sac-dep": "Sắc Đẹp",
+  "the-thao": "Thể Thao",
+  "sach-vpp": "Sách & VPP",
+};
+
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
   const product = getProductBySlug(slug || "");
   const { addItem } = useCart();
+  const navigate = useNavigate();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
@@ -30,7 +40,18 @@ export default function ProductDetail() {
     setTimeout(() => setAddedToCart(false), 2000);
   };
 
+  const handleBuyNow = () => {
+    addItem(product, quantity);
+    navigate("/cart");
+  };
+
+  const discount = Math.max(
+    0,
+    Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+  );
+
   return (
+    <div className="bg-gray-50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <div className="flex items-center gap-2 text-sm text-gray-400 mb-6">
         <Link to="/" className="hover:text-primary-500">Trang chủ</Link>
@@ -42,19 +63,24 @@ export default function ProductDetail() {
 
       <div className="grid md:grid-cols-2 gap-8 md:gap-12">
         <div className="animate-fade-in">
-          <div className="aspect-square rounded-2xl overflow-hidden bg-gray-50 mb-4">
+          <div className="relative aspect-square rounded-lg overflow-hidden bg-white border border-gray-100 mb-4">
             <img
               src={product.images[selectedImage]}
               alt={product.name}
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
+            {discount > 0 && (
+              <span className="absolute top-4 left-4 bg-primary-500 text-white rounded px-3 py-1.5 text-sm font-bold">
+                Giảm {discount}%
+              </span>
+            )}
           </div>
           <div className="flex gap-3">
             {product.images.map((img, i) => (
               <button
                 key={i}
                 onClick={() => setSelectedImage(i)}
-                className={`w-20 h-20 rounded-xl overflow-hidden border-2 transition-colors ${
+                className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
                   selectedImage === i ? "border-primary-500" : "border-gray-200 hover:border-gray-300"
                 }`}
               >
@@ -64,14 +90,9 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        <div className="animate-slide-up">
+        <div className="animate-slide-up bg-white border border-gray-100 rounded-lg p-5 md:p-6">
           <p className="text-sm text-primary-500 font-semibold uppercase tracking-wider mb-2">
-            {product.category === "thoi-trang" && "Thời Trang"}
-            {product.category === "dien-tu" && "Điện Tử"}
-            {product.category === "gia-dung" && "Gia Dụng"}
-            {product.category === "sac-dep" && "Sắc Đẹp"}
-            {product.category === "the-thao" && "Thể Thao"}
-            {product.category === "sach-vpp" && "Sách & VPP"}
+            {categoryLabels[product.category]}
           </p>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
 
@@ -101,9 +122,22 @@ export default function ProductDetail() {
             )}
           </div>
 
+          {product.originalPrice > product.price && (
+            <div className="grid sm:grid-cols-2 gap-3 mb-6">
+              <div className="border border-primary-100 bg-primary-50 rounded-lg p-3">
+                <p className="text-sm font-semibold text-primary-700">Ưu đãi sản phẩm</p>
+                <p className="text-sm text-primary-600 mt-1">Giảm trực tiếp {discount}% so với giá niêm yết</p>
+              </div>
+              <div className="border border-gold-100 bg-gold-50 rounded-lg p-3">
+                <p className="text-sm font-semibold text-gold-700">Ưu đãi giỏ hàng</p>
+                <p className="text-sm text-gold-700 mt-1">Đơn từ 500.000₫ giảm thêm 50.000₫</p>
+              </div>
+            </div>
+          )}
+
           <p className="text-gray-600 leading-relaxed mb-6">{product.description}</p>
 
-          <div className="flex items-center gap-1 mb-2">
+          <div className="flex items-center gap-2 mb-5">
             <span className={`w-2 h-2 rounded-full ${product.inStock ? "bg-green-500" : "bg-red-500"}`} />
             <span className={`text-sm ${product.inStock ? "text-green-600" : "text-red-600"}`}>
               {product.inStock ? "Còn hàng" : "Hết hàng"}
@@ -135,10 +169,26 @@ export default function ProductDetail() {
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              <div className="grid sm:grid-cols-2 gap-3">
                 <button onClick={handleAddToCart} className="btn-primary flex-1 text-lg py-4">
                   {addedToCart ? "✓ Đã thêm vào giỏ" : "Thêm Vào Giỏ Hàng"}
                 </button>
+                <button onClick={handleBuyNow} className="btn-gold text-lg py-4">
+                  Mua Ngay
+                </button>
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-3 mt-6">
+                {[
+                  ["Kiểm tra hàng", "Trước khi thanh toán"],
+                  ["Bảo hành rõ ràng", "Theo từng sản phẩm"],
+                  ["Hỗ trợ đổi trả", "Trong 7 ngày"],
+                ].map(([title, description]) => (
+                  <div key={title} className="border border-gray-100 rounded-lg p-3">
+                    <p className="text-sm font-semibold text-gray-900">{title}</p>
+                    <p className="text-xs text-gray-500 mt-1">{description}</p>
+                  </div>
+                ))}
               </div>
             </>
           )}
@@ -155,6 +205,7 @@ export default function ProductDetail() {
           </div>
         </section>
       )}
+    </div>
     </div>
   );
 }
